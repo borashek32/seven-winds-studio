@@ -1,0 +1,93 @@
+.dataTableWrapper {
+  height: calc(100vh - 88px);
+  margin-top: 88px;
+  margin-left: 234px;  
+  background-color: var(--bg-main-color);
+  padding: 0 10px;
+}
+
+.table {
+  width: 100%;
+}
+
+.tr {
+  border-bottom: var(--border-var);
+  display: flex;
+}
+
+.th {
+  height: 40px;
+  line-height: 130%;
+}
+
+.td {
+  height: 60px;
+  color: var(--text-primary-color)
+}
+
+.th, .td {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.th:first-child,
+.td:first-child {
+  width: 110px;
+}
+
+.th:nth-child(3),
+.th:nth-child(4),
+.th:nth-child(5),
+.th:nth-child(6),
+.td:nth-child(3),
+.td:nth-child(4),
+.td:nth-child(5),
+.td:nth-child(6) {
+  width: 200px;
+}
+
+.th:nth-child(2),
+.td:nth-child(2) {
+  flex: 1 1 auto;
+}
+
+.active {
+  width: 55px;
+  height: 28px;
+  border-radius: 4px;
+  background-color: var(--bg-menu-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: var(--transition-var);
+}
+
+img {
+  cursor: pointer;
+}
+
+input {
+  height: 36px;
+  border-radius: 4px;
+  border: var(--border-var);
+  background-color: var(--bg-menu-color);
+  color: var(--text-primary-color);
+  padding: 0 6px;
+}
+
+.createFormLevel {
+  display: flex;
+  justify-content: center;
+}
+
+.imgWrapper {
+  position: relative;
+  bottom: 49%;
+}
+
+.line {
+  position: absolute;
+  width: 10px;
+  height: 1px;
+}

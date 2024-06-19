@@ -1,0 +1,26 @@
+.sidebarWrapper {
+  position: fixed;
+  top: 88px;
+  left: 0;
+  width: 212px;
+  height: 100%;
+  background-color: var(--bg-menu-color);
+  border-right: var(--border-var);
+  padding-left: 22px;
+}
+
+.workList {
+  padding-top: 5px;
+}
+
+.workItem {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.workItem p {
+  color: var(--text-primary-color);
+}

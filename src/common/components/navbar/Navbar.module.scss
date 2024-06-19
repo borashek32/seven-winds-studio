@@ -1,0 +1,95 @@
+.navbarWrapper {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 88px;
+  width: 100%;
+  background-color: var(--bg-menu-color);
+  border-bottom: var(--border-var);
+}
+
+.navbarTop {
+  height: 43px;
+  padding-left: 20px;
+  border-bottom: var(--border-var);
+  display: flex;
+  gap: 31px;
+  align-items: center;
+}
+
+.imgWrapper {
+  cursor: pointer;
+}
+
+.navbarProjectMenu {
+  display: flex;
+  gap: 28px;
+}
+
+.projectMenuItemName {
+  color: var(--text-secondary-color);
+  transition: var(--transition-var);
+  cursor: pointer;
+  position: relative;
+
+  &:hover,
+  &:active {
+    color: var(--text-primary-color);
+  }
+
+  &:active {
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      color: var(--text-primary-color);
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+
+.navbarBottom {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.abbreviation {
+  font-size: 10px;
+  color: var(--text-secondary-color);
+}
+
+.projectWork {
+  position: relative;
+  height: 43px;
+  width: 214px;
+  border-right: var(--border-var);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &::after {
+    content: url('./../../assets/img/icons/arrow-down.svg');
+    position: absolute;
+    right: 13px;
+    top: 10px;
+    cursor: pointer;
+  }
+}
+
+.projectWorkName {
+  height: 43px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  border-right: var(--border-var);
+
+  p {
+    font-size: 16px;
+    line-height: 130%;
+    color: var(--text-primary-color);
+  }
+}

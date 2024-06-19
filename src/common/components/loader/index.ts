@@ -1,0 +1,1 @@
+export * as Loader from '@/common/components/loader/Loader'

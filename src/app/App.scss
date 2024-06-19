@@ -1,0 +1,11 @@
+@import './../common/assets/styles/variables';
+@import './../common/assets/styles/reset';
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--text-secondary-color);
+}

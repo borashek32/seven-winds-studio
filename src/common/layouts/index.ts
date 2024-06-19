@@ -1,0 +1,1 @@
+export * as AppLayout from '@/common/layouts/AppLayout'
