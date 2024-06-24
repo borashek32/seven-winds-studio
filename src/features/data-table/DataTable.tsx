@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import level from '@/common/assets/img/icons/level.svg'
 import styles from '@/features/data-table/DataTable.module.scss'
 import { useGetRowsQuery } from '@/features/data-table/DataTable.service'
 import { useAppDispatch, useAppSelector } from '../../common/hooks'
@@ -7,6 +8,7 @@ import { setAllRows } from '@/features/data-table/DataTable.slice'
 import { selectRows } from '@/features/data-table/DataTable.selectors'
 import { RowType } from '@/features/data-table/DataTable.types'
 import { Item } from '@/features/data-table/item/Item'
+import { CreateForm } from './forms/CreateForm'
 
 export const DataTable = () => {
   const { data, error, isLoading } = useGetRowsQuery()
@@ -15,8 +17,13 @@ export const DataTable = () => {
 
   const dispatch = useAppDispatch()
 
+  const [createMode, setCreateMode] = useState(false)
+  const createNewRow = () => {
+    setCreateMode(!createMode)
+    console.log('set create mode')
+  }
+
   const rows = useAppSelector(selectRows)
-  console.log(rows)
   
   useEffect(() => {
     if (data) {
@@ -43,9 +50,28 @@ export const DataTable = () => {
                 <Item
                   key={item.id}
                   row={item}
+                  marginLeft={0}
                 />
               )
             })}
+            <div 
+              className={styles.createNewRow}
+              style={{marginTop: !createMode ? 14 : ''}}
+            >
+              {!createMode &&
+                <img 
+                  src={level} 
+                  alt="level" 
+                  onClick={createNewRow}
+                />
+              }
+              {createMode && 
+                <CreateForm
+                  mode={createMode}
+                  setMode={setCreateMode}
+                />
+              }
+            </div>
           </div>
         </div>
       </div>

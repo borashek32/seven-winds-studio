@@ -53,14 +53,11 @@ export const UpdateForm = ({
     <>
       {row &&
         <form 
-          className={styles.tr} 
+          className={styles.form} 
           onDoubleClick={() => setMode(!mode)}
           onKeyDown={handleOnPressEnter}
         >
-          <div className={styles.td}>
-            <img src={level} alt="level" />
-          </div>
-          <div className={styles.td}>
+          <div className={styles.formInput}>
             <Controller
               control={control}
               name="rowName"
@@ -73,7 +70,7 @@ export const UpdateForm = ({
               )}
             />
           </div>
-          <div className={styles.td}>
+          <div className={styles.formInput}>
             <Controller
               control={control}
               name="salary"
@@ -86,7 +83,7 @@ export const UpdateForm = ({
               )}
             />
           </div>
-          <div className={styles.td}>
+          <div className={styles.formInput}>
             <Controller
               control={control}
               name="equipmentCosts"
@@ -99,7 +96,7 @@ export const UpdateForm = ({
               )}
             />
           </div>
-          <div className={styles.td}>
+          <div className={styles.formInput}>
             <Controller
               control={control}
               name="overheads"
@@ -112,7 +109,7 @@ export const UpdateForm = ({
               )}
             />
           </div>
-          <div className={styles.td}>
+          <div className={styles.formInput}>
             <Controller
               control={control}
               name="estimatedProfit"

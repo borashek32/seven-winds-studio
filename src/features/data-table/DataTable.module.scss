@@ -13,6 +13,61 @@
 .tr {
   border-bottom: var(--border-var);
   display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.formInput:first-child {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.formInput input {
+  flex: 1 1 auto;
+  margin-right: 20px;
+}
+
+.formInput:nth-child(2),
+.formInput:nth-child(3),
+.formInput:nth-child(4),
+.formInput:nth-child(5) {
+  width: 200px;
+}
+
+.leftMargin {
+  position: relative;
+}
+
+.leftMargin::before {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background-color: var(--text-primary-color);
+  display: flex;
+  position: absolute;
+  top: 16px;
+  left: -9px;
+}
+
+.leftMargin::after {
+  content: '';
+  width: 1px;
+  height: 48px;
+  background-color: var(--text-primary-color);
+  display: flex;
+  position: absolute;
+  top: -32px;
+  left: -9px;
+}
+
+.td:first-child {
+  position: relative;
 }
 
 .th {
@@ -21,9 +76,10 @@
 }
 
 .td {
-  height: 60px;
+  height: 52px;
   color: var(--text-primary-color)
 }
+
 
 .th, .td {
   display: flex;
@@ -34,6 +90,8 @@
 .th:first-child,
 .td:first-child {
   width: 110px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .th:nth-child(3),
@@ -81,13 +139,17 @@ input {
   justify-content: center;
 }
 
+.createNewRow {
+  display: flex;
+  align-items: center;
+}
+
+.createNewRow img,
+.createFormLevel img {
+  cursor: pointer;
+}
+
 .imgWrapper {
   position: relative;
   bottom: 49%;
-}
-
-.line {
-  position: absolute;
-  width: 10px;
-  height: 1px;
 }

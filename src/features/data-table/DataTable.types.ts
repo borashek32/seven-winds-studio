@@ -1,5 +1,5 @@
 export type RowType = {
-  child: number[]
+  child: RowType[]
   equipmentCosts: number
   estimatedProfit: number
   id: number
@@ -12,12 +12,15 @@ export type RowType = {
   salary: number
   supportCosts: number
   total: number
+  parentId: number | null
 }
 
-export type FormType = Omit<RowType, 'id' | 'child'>
+export type FormType = RowType
 
 export type ItemType = {
   row: RowType
+  isChildRow?: boolean
+  marginLeft: number
 }
 
 export type UpdateRowType = {
@@ -26,7 +29,6 @@ export type UpdateRowType = {
 }
 
 export type CreateRowType = {
-  parentId?: number
   row: FormType
 }
 
@@ -43,5 +45,5 @@ export type CreateFormProps = {
 
 export type ResponseRowType = {
   current: RowType
-  changed: []
+  changed: RowType[]
 }

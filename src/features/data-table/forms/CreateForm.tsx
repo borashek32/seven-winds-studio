@@ -5,7 +5,7 @@ import { KeyboardEvent } from 'react'
 import { useCreateRowMutation } from '@/features/data-table/DataTable.service'
 import { CreateFormProps, RowType } from '@/features/data-table/DataTable.types'
 import { useAppDispatch } from '@/common/hooks'
-import { setChild, setRow } from '@/features/data-table/DataTable.slice'
+import { setRow } from '@/features/data-table/DataTable.slice'
 
 export const CreateForm = ({
   parentId,
@@ -30,27 +30,27 @@ export const CreateForm = ({
       mimExploitation: 0,
       supportCosts: 0,
       total: 0,
+      parentId: parentId ? parentId : null
     },
   })
 
   const handleOnPressEnter = async (event: KeyboardEvent<HTMLFormElement>) => {
     if (event.key === 'Enter') {
       const data = getValues()
-      if (!parentId) {
-        await createRow({ row: data })
-          .unwrap()
-          .then((res) => {
-            setMode(!mode)
+      
+      await createRow({ row: data })
+        .unwrap()
+        .then((res) => {
+          setMode(!mode)
+          dispatch(setRow(res.current))
+
+          if (parentId) {
+            alert(`Дочерняя запись ${res.current.rowName} успешно сoздана`)
+          } else {
             alert(`Запись ${res.current.rowName} успешно сoздана`)
-            dispatch(setRow(res.current))
-          })
-          .catch(e => alert(`Ошибка ${e}`))
-      } else {
-        dispatch(setChild({ parentId, row: data }))
-        setMode(!mode)
-        alert(`Дочерняя запись ${data.rowName} успешно сoздана`)
-        dispatch(setRow(data))
-      }
+          }
+        })
+        .catch(e => alert(`Ошибка ${e}`))
     }
   }
 
@@ -61,8 +61,8 @@ export const CreateForm = ({
         onDoubleClick={() => setMode(!mode)}
         onKeyDown={handleOnPressEnter}
       >
-        <div className={styles.td + ' ' + styles.createFormLevel}>
-          <img src={level} alt="level" />
+        <div className={styles.td + ' ' + styles.createFormLevel + ' ' + (parentId ? styles.leftMargin : '')}>
+          <img src={level} alt="level" onClick={() => setMode(!mode)} />
         </div>
         <div className={styles.td}>
           <Controller

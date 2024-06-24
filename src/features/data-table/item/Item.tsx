@@ -9,14 +9,14 @@ import { useRemoveRowMutation } from '@/features/data-table/DataTable.service'
 import { CreateForm } from '@/features/data-table/forms/CreateForm'
 import { UpdateForm } from '@/features/data-table/forms/UpdateForm'
 
-
 export const Item = ({
+  isChildRow,
   row,
+  marginLeft,
 }: ItemType) => {
   const [visible, setVisible] = useState(false)
   const [createMode, setCreateMode] = useState(false)
   const [editMode, setEditMode] = useState(false)
-
   const [removeRow] = useRemoveRowMutation()
 
   const dispatch = useAppDispatch()
@@ -28,7 +28,7 @@ export const Item = ({
   const removeItem = async () => {
     await removeRow(row.id)
       .unwrap()
-      .then(res => alert(`Запись ${res.current.rowName} успешно удалена`))
+      .then(() => alert(`Запись успешно удалена`))
       .catch(e => alert(`Ошибка ${e}`))
   }
 
@@ -40,18 +40,15 @@ export const Item = ({
   useEffect(() => {
     dispatch(setRow(row))
   }, [row, dispatch])
+  console.log(row)
 
   return (
     <>
-      {!editMode ? (
         <div className={styles.tr} onDoubleClick={handleDoubleClick}>
-          <div className={styles.td + ' ' + (row.child.length > 0 ? styles.imgWrapper : '')}>
+          <div className={styles.td}>
             <div 
-              className={visible 
-                ? styles.active 
-                : row.child.length > 0 
-                ? styles.line
-                : ''} 
+              style={{marginLeft: isChildRow ? marginLeft += 20 : ''}}
+              className={(visible ? styles.active : '') + ' ' + (isChildRow ? styles.leftMargin : '')} 
               onMouseLeave={() => setVisible(!visible)}
             >
               <img 
@@ -69,19 +66,24 @@ export const Item = ({
               }
             </div>
           </div>
-          <div className={styles.td}>{row.rowName}</div>
-          <div className={styles.td}>{row.salary}</div>
-          <div className={styles.td}>{row.equipmentCosts}</div>
-          <div className={styles.td}>{row.overheads}</div>
-          <div className={styles.td}>{row.estimatedProfit}</div>
-        </div> 
-      ) : (
-        <UpdateForm
-          key={row.id}
-          mode={editMode}
-          setMode={setEditMode}
-        />
-      )}
+          {!editMode ? (
+            <>
+              <div className={styles.td}>{row.rowName}</div>
+              <div className={styles.td}>{row.salary}</div>
+              <div className={styles.td}>{row.equipmentCosts}</div>
+              <div className={styles.td}>{row.overheads}</div>
+              <div className={styles.td}>{row.estimatedProfit}</div>
+            </>
+            ) : (
+              <UpdateForm
+                key={row.id}
+                mode={editMode}
+                setMode={setEditMode}
+              />
+            )
+          }
+        </div>
+        
       {createMode && !editMode && 
         <CreateForm
           parentId={row.id}
@@ -89,6 +91,11 @@ export const Item = ({
           setMode={setCreateMode}
         />
       }
+      {row.child && row.child.length > 0 && row.child.map(item => {
+            return (
+              <Item row={item} key={item.id} isChildRow={true} marginLeft={marginLeft} />
+            )})
+          } 
     </>
   )
 }
