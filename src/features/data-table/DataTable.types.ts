@@ -41,6 +41,7 @@ export type CreateFormProps = {
   mode: boolean
   setMode: (editMode: boolean) => void
   parentId?: number
+  marginLeft: number
 }
 
 export type ResponseRowType = {

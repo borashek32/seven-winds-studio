@@ -11,6 +11,7 @@ export const CreateForm = ({
   parentId,
   mode,
   setMode,
+  marginLeft,
 }: CreateFormProps) => {
   const dispatch = useAppDispatch()
 
@@ -38,7 +39,8 @@ export const CreateForm = ({
     if (event.key === 'Enter') {
       const data = getValues()
       
-      await createRow({ row: data })
+      if (data.rowName.trim() !== '') {
+        await createRow({ row: data })
         .unwrap()
         .then((res) => {
           setMode(!mode)
@@ -51,18 +53,26 @@ export const CreateForm = ({
           }
         })
         .catch(e => alert(`Ошибка ${e}`))
+      } else {
+        alert('Поле "наименование" не может быть пустым')
+      }
     }
   }
 
   return (
-    <>
+    <div className={styles.tr}>
       <form 
-        className={styles.tr} 
+        className={styles.form} 
         onDoubleClick={() => setMode(!mode)}
         onKeyDown={handleOnPressEnter}
       >
-        <div className={styles.td + ' ' + styles.createFormLevel + ' ' + (parentId ? styles.leftMargin : '')}>
-          <img src={level} alt="level" onClick={() => setMode(!mode)} />
+        <div className={styles.td}>
+          <div 
+            style={{left: parentId ? marginLeft += 20 : ''}}
+            className={styles.createFormLevel + ' ' + (parentId ? styles.leftMargin : '')}
+          >
+            <img src={level} alt="level" onClick={() => setMode(!mode)} style={{top: -15}} />
+          </div>
         </div>
         <div className={styles.td}>
           <Controller
@@ -130,6 +140,6 @@ export const CreateForm = ({
           />
         </div>
       </form>
-    </>
+    </div>
   )
 }

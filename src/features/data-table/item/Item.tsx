@@ -89,13 +89,19 @@ export const Item = ({
           parentId={row.id}
           mode={createMode}
           setMode={setCreateMode}
+          marginLeft={marginLeft}
         />
       }
       {row.child && row.child.length > 0 && row.child.map(item => {
-            return (
-              <Item row={item} key={item.id} isChildRow={true} marginLeft={marginLeft} />
-            )})
-          } 
+        return (
+          <Item 
+            row={item} 
+            key={item.id} 
+            isChildRow={true} 
+            marginLeft={marginLeft} 
+          />
+        )})
+      } 
     </>
   )
 }

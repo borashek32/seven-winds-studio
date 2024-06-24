@@ -1,5 +1,4 @@
 import styles from './../DataTable.module.scss'
-import level from '@/common/assets/img/icons/level.svg'
 import { Controller, useForm } from 'react-hook-form'
 import { KeyboardEvent } from 'react'
 import { useUpdateRowMutation } from '@/features/data-table/DataTable.service'
