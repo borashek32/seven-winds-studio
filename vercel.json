@@ -1,0 +1,9 @@
+{
+  "runtime": "node",
+  "builds": [
+    {
+      "src": "/api",
+      "use": "@vercel/api"
+    }
+  ]
+}
