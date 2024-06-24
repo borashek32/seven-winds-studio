@@ -40,7 +40,6 @@ export const Item = ({
   useEffect(() => {
     dispatch(setRow(row))
   }, [row, dispatch])
-  console.log(row)
 
   return (
     <>

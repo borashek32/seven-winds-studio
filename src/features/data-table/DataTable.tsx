@@ -11,16 +11,13 @@ import { Item } from '@/features/data-table/item/Item'
 import { CreateForm } from './forms/CreateForm'
 
 export const DataTable = () => {
-  const { data, error, isLoading } = useGetRowsQuery()
-
-  error && alert({error})
+  const { data, isLoading } = useGetRowsQuery()
 
   const dispatch = useAppDispatch()
 
   const [createMode, setCreateMode] = useState(false)
   const createNewRow = () => {
     setCreateMode(!createMode)
-    console.log('set create mode')
   }
 
   const rows = useAppSelector(selectRows)
