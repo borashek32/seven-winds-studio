@@ -69,6 +69,7 @@ export const DataTable = () => {
                 <CreateForm
                   mode={createMode}
                   setMode={setCreateMode}
+                  marginLeft={0}
                 />
               }
             </div>
